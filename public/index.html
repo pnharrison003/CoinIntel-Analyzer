@@ -19,7 +19,7 @@
   </main>
   <script>
     async function fetchLiveROIData() {
-      const response = await fetch('/api/roi');
+      const response = await fetch('https://coinintel-analyzer.up.railway.app/api/roi');
       const data = await response.json();
       return data.roiData;
     }
