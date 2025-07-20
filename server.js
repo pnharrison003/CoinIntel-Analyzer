@@ -1,27 +1,22 @@
-
 const express = require('express');
-const cors = require('cors');
+const app = express();
 const path = require('path');
 
-const app = express();
-app.use(cors());
-app.use(express.static(path.join(__dirname, 'public')));
+// Serve static files from the "public" folder
+app.use(express.static('public'));
 
-function generateMockROI() {
-  const base = 2 + Math.random();
- return Array.from({ length: 7 }, (_, i) =>
-    parseFloat((base + i * 0.4 + Math.random()).toFixed(2))
-  );
-  
-
-
-}
-
+// Simulated live ROI API
 app.get('/api/roi', (req, res) => {
-  res.json({ roiData: generateMockROI() });
+  const roiData = Array.from({ length: 7 }, () =>
+    parseFloat((Math.random() * 10 - 5).toFixed(2)) // -5% to +5%
+  );
+  res.json({ roiData });
 });
 
+// Start the server
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
-  console.log(`Server running at http://localhost:${PORT}`);
+  console.log(`Server running on port ${PORT}`);
 });
+
+
