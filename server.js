@@ -12,7 +12,7 @@ function generateMockROI() {
  return Array.from({ length: 7 }, (_, i) =>
     parseFloat((base + i * 0.4 + Math.random()).toFixed(2))
   );
-  setInterval(updateChartData, 15000);
+  
 
 
 }
